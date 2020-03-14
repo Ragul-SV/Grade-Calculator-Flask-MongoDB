@@ -1,0 +1,99 @@
+{% extends 'header.html' %} {% block body %}
+
+<div class="container container2">
+    <div class="row">
+        {% if not session.logged_in %}
+        <h2 style="text-align:center; color:white">REGISTER</h2>
+        <h4 style="text-align:center; color:white">AS STUDENT</h4>
+        <div style="width:30%; margin:25px auto;">
+            <form action="/regstu" method="POST">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <input class="form-control" type="text" name="username" placeholder="username" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                        <input class="form-control" type="password" name="password" placeholder="password" required minlength="6">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <input class="form-control" type="email" name="email" placeholder="Enter a vaild Email address" required minlength="6" maxlength="40">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </span>
+                        <input class="form-control" type="date" name="dob" placeholder="Enter Your Date of Birth">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fas fa-book"></i>
+                        </span>
+                        <select name="batch" class="form-control">
+                            <option value="none" selected disabled hidden>Enter Batch</option>
+                            <option value="2017-2021">2017-2021</option>
+                            <option value="2018-2022">2018-2022</option>
+                            <option value="2019-2023">2019-2023</option>
+                            <option value="2020-2024">2020-2024</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fas fa-book"></i>
+                        </span>
+                        <select name="dept" class="form-control" placeholder='Enter department'>
+                            <option value="none" selected disabled hidden>Enter Department</option>
+                            <option value="CSE">CSE</option>
+                            <option value="ECE">ECE</option>
+                            <option value="EEE">EEE</option>
+                            <option value="MECH">Mechanical</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fas fa-book"></i>
+                        </span>
+                        <select name="section" class="form-control" placeholder="Enter Department">
+                            <option value="none" selected disabled hidden>Enter Section</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-block button1" required>
+                        <span>Submit</span>
+                    </button>
+                </div>
+            </form>
+            <a class="btn btn-block button2" style="display:inline-block; margin-top:5px" href="/register"><span>Go Back</span></a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+

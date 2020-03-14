@@ -1,0 +1,22 @@
+{% extends 'header.html' %} 
+{% block body %}
+<div class="container container1">
+    <div class="row">
+        {% if not session.logged_in %}
+        <h2 style="text-align:center; color:white;">REGISTER</h2>
+        <div style="width:80%; margin:50px auto; ">
+            <div class="inline-block" style="text-align:center;">
+                <div>
+                    <a href="/regstu" >
+                        <img border="0" class="inline-block" src="https://cdn2.iconfinder.com/data/icons/school-flat-circle/512/Boy_child_kid_school_boy_student-512.png" width="250" height="250">
+                    </a>
+                    <a href="/regfac" >
+                        <img border="0" class="float-right" src="https://lh3.googleusercontent.com/5Fo5MGW0jeJTIT6xAMBfMN-1mfA6UQgH_D6AYjHlUJkoiG_boUZiSLiR_kh8kiJbqA" width="250" height="250">
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

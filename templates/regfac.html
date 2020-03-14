@@ -1,0 +1,55 @@
+{% extends 'header.html' %} {% block body %}
+
+<div class="container container2">
+    <div class="row">
+        {% if not session.logged_in %}
+        <h2 style="text-align:center; color:white">REGISTER</h2>
+        <h4 style="text-align:center; color:white">AS FACULTY</h4>
+        <div style="width:30%; margin:25px auto;">
+            <form action="/regfac" method="POST">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <input class="form-control" type="text" name="username" placeholder="username" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                        <input class="form-control" type="password" name="password" placeholder="password" required minlength="6" maxlength="20">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <input class="form-control" type="email" name="email" placeholder="Enter a vaild Email address" required minlength="6" maxlength="40">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </span>
+                        <input class="form-control" type="date" name="dob" placeholder="Enter Your Date of Birth">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-block button1" required>
+                        <span>Submit</span>
+                    </button>
+                </div>
+            </form>
+            <a class="btn btn-block button2" style="display:inline-block; margin-top:5px" href="/register">
+                <span>Go Back</span>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'header.html' %}
+
+{% block body %}
+<div class="container container1">
+	<div class="row">
+        {% if not session.logged_in %}
+		<h2 style="text-align:center; color:white;">Forgot Password</h2>
+		<div style="width:30%; margin:25px auto;">
+            <form action="/sendmail" method="POST" class="form-horizontal">
+				<div class="form-group">
+                    <div class="input-group">
+                    <span class="input-group-addon"><i class="far fa-envelope"></i></span>
+					<input class="form-control" type="email" name="mailid" placeholder="Enter your Email address" required minlength="6" maxlength="40">
+                    </div>
+				</div>
+                <div class="form-group">
+					<button class="btn btn-lg btn-block button1"><span>Submit</span></button>
+				</div>
+			</form>
+            {% endif %}
+            <a class="btn btn-block button2" style="display:inline-block; margin-top:5px" href="/login"><span>Go Back</span></a>
+		</div>
+	</div>
+</div>
+{% endblock %}

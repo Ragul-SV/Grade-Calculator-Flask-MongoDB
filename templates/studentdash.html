@@ -1,0 +1,106 @@
+{% extends 'header.html' %} {% block body %}
+<div class="container container3">
+    <header class="jumbotron" style="font-family: 'Sen', sans-serif;margin-top:0px !important; background:rgb(255,255,255,0.3) !important;">
+        <div style="width:40%; margin:0px auto;">
+            <h2 style="text-align:center; color:white; text-shadow: 3px 2px 4px #000000;">GRACO STUDENT DASHBOARD</h2>
+        </div>
+        <!-- <a class="btn btn-block btn-lg button1" style="width:30%;margin:0px auto;" href="/grades">
+            <span>Go to Grades Calculator</span>
+        </a> -->
+        {%if not arr%}
+    </header>
+    <header class="jumbotron" style="margin-top:0px !important; background:rgb(255,255,255,0.3) !important;">
+        <div style="width:40%; margin:0px auto;">
+            <h4 style="text-align:center; color:white;font-family: 'Sen', sans-serif;">Please Click Here To Know Your Grades</h4>
+            <form action="/viewmarks" method="POST">
+                <!--enctype="multipart/form-data"-->
+                <button class="btn btn-lg btn-block button1" required>
+                    <span>View Grades</span>
+                </button>
+            </form>
+            {%endif%}
+            {% if arr%}
+            <h2 style="text-align:center;color:white;font-family: 'Sen', sans-serif;margin-top:50px;">Your Marks</h2>
+            
+            
+            
+            <table style="width: 100%;
+                           display: table;
+                           color:white;
+                           border: 1px solid #273cca;border-radius:50% !important;">
+                
+                <tr style=" background: #1a2a6c;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ ">
+                    <th style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">RollNo</th>
+                    <th style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">Name</th>
+                    <th style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">Subject</th>
+                    <th style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">Marks</th>
+                    <th style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">Grade (Before Grace Mark)</th>
+                    <th style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">Final Grade</th>
+                </tr>
+                {% for i in arr %}
+                <tr style="background: #1a2a6c; 
+background: -webkit-linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c);  
+background: linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c); ">
+                    <td style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">{{i[0]}}</td>
+                    <td style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">{{i[1]}}</td>
+                    <td style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">{{i[2]}}</td>
+                    <td style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">{{i[3]}}</td>
+                    <td style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">{{i[4]}}</td>
+                    <td style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">{{i[5]}}</td>
+                </tr>
+            {% endfor %}
+            </table>
+            {% endif %}
+        </div>
+    </header>
+</div>
+
+
+<div class="well" style="background: #1a2a6c;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+border-radius:3%;
+font-family: 'Bellota', cursive;
+background-size: cover;background-repeat:no-repeat;width:90%;margin:0 auto;height:auto;align:center;">
+    <div class="row">
+        <div class="col-lg-5">
+            <div style="padding-left:90px;padding-top:40px;margin:auto;">
+                <h2 style="text-align:center; color:white;">Send Comment To Faculty</h2>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <form class="form-horizontal" action='/student' method='POST'>
+                <div style="width:60%; margin:25px auto;">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fas fa-user"></i>
+                            </span>
+                            <input class="form-control" type="text" name="facultyid" placeholder="Enter the Faculty ID To Send Comment" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fas fa-user"></i>
+                            </span>
+                            <input class="form-control" type="text" name="comment" placeholder="comment" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-block button1">
+                            <span>Send Comment</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br> {% endblock %}

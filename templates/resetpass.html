@@ -1,0 +1,35 @@
+{% extends 'header.html' %} {% block body %}
+<div class="container container1">
+    <div class="row">
+        {% if not session.logged_in %}
+        <h2 style="text-align:center; color:white;">RESET PASSWORD</h2>
+        <div style="width:30%; margin:25px auto;">
+            <form action="/forgotpass/{{username}}" method="POST" class="form-horizontal">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                        <input class="form-control" type="password" name="newpass" placeholder="Enter new password" required minlength="6">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                        <input class="form-control" type="date" name="dob" placeholder="Enter your Date of Birth" required>
+                    </div>
+                </div>
+                <div class="form-group">
+					<button class="btn btn-lg btn-block button1"><span>Submit</span></button>
+				</div>
+            </form>
+            {% endif %}
+            <a class="btn btn-block button2" style="display:inline-block; margin-top:5px" href="/">
+                <span>Go Back</span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
