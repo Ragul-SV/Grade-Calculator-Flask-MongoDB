@@ -1,0 +1,227 @@
+html {
+    min-height: 100%;
+}
+body {
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+}
+body {
+    background: url('https://www.jakpost.travel/imgfiles/full/54/540654/sharp-wallpaper.jpg')
+        no-repeat center;
+    margin: 0;
+    background-position: center center;
+    background-blend-mode: color;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: #000;
+    transition: all 0.5s;
+}
+
+.container1 {
+    background: transparent;
+    padding-top: 25px;
+}
+
+.container2 {
+    background: transparent;
+    padding-top: 15px;
+}
+
+.container3 .jumbotron {
+    background: rgb(255, 255, 255, 0.5);
+    margin-top: 100px;
+    padding-top: 15px;
+}
+
+.nav1 {
+    background: #000000;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #434343, #000000);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #434343, #000000);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: white;
+    border: 0px;
+}
+
+.nav1 .navbar-brand {
+    font-size: 2em;
+    padding-top: 10px;
+    color: white;
+}
+
+.nav1 .nav li a {
+    color: white;
+}
+
+button {
+    display: inline-block;
+    border-radius: 4px;
+    position: relative;
+    background-color: #f4511e;
+    border: none;
+    font-size: 28px;
+    color: #ffffff;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    transition: all 0.5s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.button1 {
+    background: #ee0979;
+    background: -webkit-linear-gradient(to right, #ff6a00, #ee0979);
+    background: linear-gradient(to right, #ff6a00, #ee0979);
+    color: white;
+}
+
+.button1:hover {
+    background: #833ab4;
+    background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
+    background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
+    color: white;
+}
+
+.button2 {
+    background: #000046; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+        to right,
+        #1cb5e0,
+        #000046
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to right,
+        #1cb5e0,
+        #000046
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: white;
+    width: 140px;
+    height: 40px;
+    text-align: center;
+}
+
+.button2:hover {
+    background: #00c3ff; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+        to right,
+        #ffff1c,
+        #00c3ff
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to right,
+        #ffff1c,
+        #00c3ff
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    color: black;
+}
+
+button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+button:hover span {
+    padding-right: 25px;
+}
+
+button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+button:after {
+    content: '';
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s;
+}
+
+button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
+}
+
+.col-sm-4 i {
+    height: 20px;
+}
+
+table tr:hover {
+    /* background: #232526 !important; 
+background: -webkit-linear-gradient(to right, #414345, #232526) !important;
+background: linear-gradient(to right, #414345, #232526) !important;  */
+    background: #c31432;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #240b36, #c31432) !important;  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.tabl {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    display: table;
+    color:white;
+    border: 1px solid #ccc;
+}
+
+
+.tabl tr:nth-child(odd) {
+    background: #00F260;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0575E6, #00F260);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0575E6, #00F260); 
+}
+.tab tr:nth-child(even) {
+    background: #8E0E00;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #1F1C18, #8E0E00);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #1F1C18, #8E0E00);
+}
+.tab tr:hover, {
+    background: #00c3ff;  
+    background: -webkit-linear-gradient(to right, #ffff1c, #00c3ff);  
+    background: linear-gradient(to right, #ffff1c, #00c3ff);
+}
+.tab tr th,
+.tab tr td {
+    text-align: center;
+}
+.tab td,
+.tab th,
+.tab td,
+.tab th {
+    padding: 8px 8px;
+    display: table-cell;
+    text-align: left;
+    vertical-align: top;
+}
+.tab th:first-child,
+.tab td:first-child,
+.tab th:first-child,
+.tab td:first-child {
+    padding-left: 16px;
+}
