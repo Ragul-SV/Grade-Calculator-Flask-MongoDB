@@ -21,29 +21,22 @@
             {%endif%}
             {% if arr%}
             <h2 style="text-align:center;color:white;font-family: 'Sen', sans-serif;margin-top:50px;">Your Marks</h2>
-            
-            
-            
+           
             <table style="width: 100%;
                            display: table;
                            color:white;
                            border: 1px solid #273cca;border-radius:50% !important;">
                 
-                <tr style=" background: #1a2a6c;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
- ">
-                    <th style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">RollNo</th>
-                    <th style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">Name</th>
-                    <th style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">Subject</th>
-                    <th style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">Marks</th>
-                    <th style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">Grade (Before Grace Mark)</th>
-                    <th style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">Final Grade</th>
+                <tr style="background: linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c);">
+                    <th scope="col" style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">RollNo</th>
+                    <th scope="col" style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">Name</th>
+                    <th scope="col" style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">Subject</th>
+                    <th scope="col" style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">Marks</th>
+                    <th scope="col" style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">Grade (Before Grace Mark)</th>
+                    <th scope="col" style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">Final Grade</th>
                 </tr>
                 {% for i in arr %}
-                <tr style="background: #1a2a6c; 
-background: -webkit-linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c);  
-background: linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c); ">
+                <tr style="background: linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c); ">
                     <td style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">{{i[0]}}</td>
                     <td style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">{{i[1]}}</td>
                     <td style=" text-align: center;padding: 8px 8px;display: table-cell;vertical-align: top;">{{i[2]}}</td>
@@ -59,13 +52,10 @@ background: linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c); ">
 </div>
 
 
-<div class="well" style="background: #1a2a6c;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-border-radius:3%;
-font-family: 'Bellota', cursive;
-background-size: cover;background-repeat:no-repeat;width:90%;margin:0 auto;height:auto;align:center;">
+<div class="well" style="background: linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c);border-radius:3%;
+                         font-family: 'Bellota', cursive;
+                         background-size: cover;background-repeat:no-repeat;
+                         width:90%;margin:0 auto;height:auto;">
     <div class="row">
         <div class="col-lg-5">
             <div style="padding-left:90px;padding-top:40px;margin:auto;">
@@ -78,7 +68,7 @@ background-size: cover;background-repeat:no-repeat;width:90%;margin:0 auto;heigh
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon">
-                                <i class="fas fa-user"></i>
+                                <em class="fas fa-user"></em>
                             </span>
                             <input class="form-control" type="text" name="facultyid" placeholder="Enter the Faculty ID To Send Comment" required>
                         </div>
@@ -86,7 +76,7 @@ background-size: cover;background-repeat:no-repeat;width:90%;margin:0 auto;heigh
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon">
-                                <i class="fas fa-user"></i>
+                                <em class="fas fa-user"></em>
                             </span>
                             <input class="form-control" type="text" name="comment" placeholder="comment" required>
                         </div>
