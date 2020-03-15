@@ -70,8 +70,6 @@ button {
 }
 
 .button1 {
-    background: #ee0979;
-    background: -webkit-linear-gradient(to right, #ff6a00, #ee0979);
     background: linear-gradient(to right, #ff6a00, #ee0979);
     color: white;
 }
@@ -82,17 +80,7 @@ button {
 }
 
 .button2 {
-    background: #000046; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-        to right,
-        #1cb5e0,
-        #000046
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-        to right,
-        #1cb5e0,
-        #000046
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right,#1cb5e0,#000046);
     color: white;
     width: 140px;
     height: 40px;
@@ -100,18 +88,7 @@ button {
 }
 
 .button2:hover {
-    background: #00c3ff; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-        to right,
-        #ffff1c,
-        #00c3ff
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-        to right,
-        #ffff1c,
-        #00c3ff
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    background: linear-gradient(to right, #ffff1c,#00c3ff);
     color: black;
 }
 
@@ -165,13 +142,7 @@ button:active:after {
 }
 
 table tr:hover {
-    /* background: #232526 !important; 
-background: -webkit-linear-gradient(to right, #414345, #232526) !important;
-background: linear-gradient(to right, #414345, #232526) !important;  */
-    background: #c31432;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #240b36, #c31432) !important;  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+background: linear-gradient(to right, #240b36, #c31432) !important;
 }
 
 .tabl {
@@ -185,18 +156,12 @@ background: linear-gradient(to right, #240b36, #c31432) !important;  /* W3C, IE 
 
 
 .tabl tr:nth-child(odd) {
-    background: #00F260;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #0575E6, #00F260);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #0575E6, #00F260); 
 }
 .tab tr:nth-child(even) {
-    background: #8E0E00;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #1F1C18, #8E0E00);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #1F1C18, #8E0E00);
 }
 .tab tr:hover, {
-    background: #00c3ff;  
-    background: -webkit-linear-gradient(to right, #ffff1c, #00c3ff);  
     background: linear-gradient(to right, #ffff1c, #00c3ff);
 }
 .tab tr th,
