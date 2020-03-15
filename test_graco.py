@@ -3,10 +3,15 @@ import unittest
 import time
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.firefox.options import Options
 cap = DesiredCapabilities().FIREFOX
-cap["marionette"] = False
+cap["marionette"] = True
+options = Options()
+binary = r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe'
+options.binary = binary
+options.set_headless(headless=True)
 
-driver = webdriver.Firefox(capabilities=cap,executable_path="C:/Users/Ragul/Desktop/geckodriver.exe")
+driver = webdriver.Firefox(firefox_options=options,capabilities=cap,executable_path="C:/Users/Ragul/Desktop/geckodriver.exe")
 driver.implicitly_wait(10)
 driver.maximize_window()
 driver.get("http://graco-project.herokuapp.com/")
@@ -57,3 +62,5 @@ x = Select(driver.find_element_by_name('section'))
 x.select_by_visible_text("B")
 x = driver.find_element_by_id('regsub')
 x.click()
+
+driver.quit()
