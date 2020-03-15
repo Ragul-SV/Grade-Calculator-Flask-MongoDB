@@ -2,6 +2,7 @@ flask
 werkzeug
 pymongo
 flask_bcrypt
+flask_mail
 scipy
 datetime
 pyrebase
