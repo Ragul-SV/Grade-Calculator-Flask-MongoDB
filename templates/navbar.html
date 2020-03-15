@@ -1,23 +1,38 @@
- <nav class="nav1 navbar navbar-default ">
-		<div class="container-fluid">
-			<div class="navbar-header">
-					<a class="navbar-brand" href="/home"><span><em class="fab fa-gofore"></em></span>raco</a>
-			</div>
-			<div class="collapse navbar-collapse">
-				<ul class="nav navbar-nav navbar-right">
-					{% if session.logged_in %}
-                    <li><a href='#'>Signed in as {{session['username']}}</a></li>
-                    {% if session['type']=='Student' %}
-                    <li><a href="/student">Dashboard</a></li>
-                    {% else %}
-                    <li><a href="/faculty">Dashboard</a></li>
-                    {% endif %}
-                    <li><a href="/logout">Logout</a></li>
+<nav class="nav1 navbar navbar-default ">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/home">
+                <span>
+                    <em class="fab fa-gofore"></em>
+                </span>raco</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                {% if session.logged_in %}
+                <li>
+                    <a href='#'>Signed in as {{session['username']}}</a>
+                </li>
+                {% if session['type']=='Student' %}
+                <li>
+                    <a href="/student" id="dashboard">Dashboard</a>
+                </li>
                 {% else %}
-                    <li><a href="/register">Register</a></li>
-                    <li><a href="/login">Login</a></li>
+                <li>
+                    <a href="/faculty" id="dashboard">Dashboard</a>
+                </li>
                 {% endif %}
-				</ul>
-			</div>
-		</div>
+                <li>
+                    <a href="/logout" id="logout">Logout</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="/register" id="register">Register</a>
+                </li>
+                <li>
+                    <a href="/login" id="register">Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
 </nav>
