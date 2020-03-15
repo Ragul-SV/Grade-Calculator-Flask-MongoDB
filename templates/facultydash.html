@@ -1,12 +1,9 @@
 {% extends 'header.html' %} {% block body %}
-<div class="container container3" >
+<div class="container container3">
     <header class="jumbotron" style="font-family: 'Sen', sans-serif;margin-top:0px !important; background:rgb(255,255,255,0.3) !important;">
         <div style="width:40%; margin:0px auto;">
             <h2 style="text-align:center; color:white; text-shadow: 3px 2px 4px #000000;">GRACO FACULTY DASHBOARD</h2>
         </div>
-        <!-- <a class="btn btn-block btn-lg button1" style="width:30%;margin:0px auto;" href="/grades">
-            <span>Go to Grades Calculator</span>
-        </a> -->
     </header>
     <header class="jumbotron" style="margin-top:0px !important; background:rgb(255,255,255,0.3) !important;">
         <div style="width:40%; margin:0px auto;">
@@ -61,22 +58,22 @@
                         <span class="input-group-addon">
                             <em class="fas fa-book"></em>
                         </span>
-                        <input class="form-control" type="file" name="file" required >
+                        <input class="form-control" type="file" name="file" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <button name = "submit" value="marks" class="btn btn-lg btn-block button1" required>
+                    <button name="submit" value="marks" class="btn btn-lg btn-block button1" required>
                         <span>Upload Marksheet</span>
                     </button>
                 </div>
-                
+
                 <div class="form-group">
-                    <button name = "submit" value="grace" class="btn btn-lg btn-block button1" required>
+                    <button name="submit" value="grace" class="btn btn-lg btn-block button1" required>
                         <span>Upload Grace marks</span>
                     </button>
                 </div>
-                
+
             </form>
         </div>
     </header>
@@ -143,15 +140,16 @@
     </header>
 </div>
 
-<div class="well" style="margin-left:30px;background: linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c);border-radius:3%;">
+<div class="well" style="margin-left:30px;
+background: linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c);
+border-radius:3%;">
     <h3 style="font-family: 'Bellota', cursive;color:white;text-align:center;">
-                Comments from Students
-            </h3>
-    <hr>
-    {% for comment in comments %}
+        Comments from Students
+    </h3>
+    <hr> {% for comment in comments %}
     <div class="row">
         <div class="col-md-12">
-            
+
             <strong>{{comment[11:27]}}</strong>
             <span class="pull-right" style="color:white;">{{comment[:10]}}</span>
             <p>{{comment[28:]}}</p>
@@ -163,7 +161,6 @@
     </div>
     <hr> {% endfor %}
 </div>
-    <br>
-    <br>
-    <br>
-    {%endblock%}
+<br>
+<br>
+<br> {%endblock%}
