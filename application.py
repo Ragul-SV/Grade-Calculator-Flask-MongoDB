@@ -15,17 +15,11 @@ import csv
 from datetime import date
 import math
 app = Flask(__name__)
-# user.update_one( {"username":request.form['facultyid']}, {"$push": { "comments":comment}}) 
 bcrypt = Bcrypt()
 
-# client = MongoClient("mongodb+srv://Ragul:ragulsv@graco-pg6jo.mongodb.net/test?retryWrites=true&w=majority")
-# db = client.get_database('Graco')
-# user = db.user
-
-client = MongoClient("mongodb+srv://udhay:aakash@cluster0-clxec.mongodb.net/test?retryWrites=true&w=majority")
-db = client.get_database('udhay')
-user = db.weather
-
+client = MongoClient("mongodb+srv://*****:*****@graco-pg6jo.mongodb.net/test?retryWrites=true&w=majority")
+db = client.get_database('Graco')
+user = db.user
 
 app.debug=True
 UPLOAD_FOLDER = './marksheet_folder'
@@ -33,7 +27,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'wox.csti1@gmail.com'
+app.config['MAIL_USERNAME'] = '******'
 app.config['MAIL_PASSWORD'] = '******'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
@@ -53,8 +47,6 @@ config= {
 
 firebase = pyrebase.initialize_app(config);
 storage = firebase.storage()
-# curuser = user.find_one({'username' : "CB.EN.F4CSE00001"})
-# user.update_one( {"username":curuser['username']}, {"$pull": {"comments":"2020-03-09 CB.EN.U4CSE17348 Software Engineering mark is 33 instead of 25"}})
 
 # Home Page
 @app.route('/',methods=['GET'])
@@ -111,8 +103,8 @@ def sendmail():
         username = existing_user['username']
         mess = 'GRACO : Reset Your Password.'
         msg = Message(mess, sender = 'wox.csti1@gmail.com', recipients = [mailid])
-        link = 'http://gradegrace-nngdt.run-us-west2.goorm.io/forgotpass/'+username
-        # link = 'http://graco-project.herokuapp.com/forgotpass/'+username
+#         link = 'http://gradegrace-nngdt.run-us-west2.goorm.io/forgotpass/'+username
+        link = 'http://graco-project.herokuapp.com/forgotpass/'+username
         msg.body = "Click this link to reset your password. " + link
         mail.send(msg)
         flash('Mail sent Successfully!! Click the link in your email to reset your password','success')
@@ -437,4 +429,4 @@ def grades():
 if __name__ == '__main__':
     app.secret_key = 'youcantseeme'
     # port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=int(sys.argv[1]))
+    app.run(host='0.0.0.0', 80)
