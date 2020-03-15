@@ -271,8 +271,8 @@ def view_marks():
         for rollno,name,subject,marks,grade,finalgrade in zip(df.rollno,df.name,df.subject,df.marks,df.grade,df.final_grade): 
             if str(rollno)==str(session['username'][11:]):
                 stu_grades.append([rollno,name,subject,marks,grade,finalgrade])
-        return render_template('studentdash.html',arr=stu_grades)
         flash("Here is your Marks :)","success")
+        return render_template('studentdash.html',arr=stu_grades)
     return redirect('/student')
 
 
