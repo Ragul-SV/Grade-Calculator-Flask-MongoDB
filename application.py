@@ -14,6 +14,8 @@ import xlsxwriter
 import csv
 from datetime import date
 import math
+from pathlib import Path
+
 app = Flask(__name__)
 bcrypt = Bcrypt()
 
@@ -26,11 +28,11 @@ UPLOAD_FOLDER = './marksheet_folder'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER 
 
 app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = '******'
-app.config['MAIL_PASSWORD'] = '******'
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USERNAME'] = '*****'
+app.config['MAIL_PASSWORD'] = '*****'
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
 
 mail = Mail(app)
 
@@ -51,7 +53,6 @@ storage = firebase.storage()
 # Home Page
 @app.route('/',methods=['GET'])
 def start():
-    user.insert_one({"username":"udhay"})
     session['logged_in']=False
     session['username'] = None
     return redirect('/home')
@@ -103,7 +104,7 @@ def sendmail():
         username = existing_user['username']
         mess = 'GRACO : Reset Your Password.'
         msg = Message(mess, sender = 'wox.csti1@gmail.com', recipients = [mailid])
-#         link = 'http://gradegrace-nngdt.run-us-west2.goorm.io/forgotpass/'+username
+        # link = 'http://gradegrace-nngdt.run-us-west2.goorm.io/forgotpass/'+username
         link = 'http://graco-project.herokuapp.com/forgotpass/'+username
         msg.body = "Click this link to reset your password. " + link
         mail.send(msg)
@@ -139,7 +140,6 @@ def forgotpass(username):
                 return redirect('/forgotpass/'+username)
         else:
             return redirect('/forgotpass/'+username)
-        
     return render_template('resetpass.html',username = username)
     
     
@@ -192,7 +192,7 @@ def register_student():
                 section = request.form['section']
                 types = 'Student'
                 comments = []
-                user.insert_one({'username' : username, 'password' : hashpass, 'email':email, 'dob':dob, 'batch':batch, 'dept':dept, 'section':section, 'type':types, 'comments':comments})
+                user.insert_one({'username' : username, 'password' : hashpass,'email':email, 'dob':dob, 'batch':batch, 'dept':dept, 'section':section, 'type':types, 'comments':comments})
                 session['logged_in'] = True
                 session['username'] = username
                 flash('You are now logged in','success')
@@ -246,10 +246,14 @@ def student_dash():
             return redirect('/student')
         flash('Username does not exist!!','danger')
         return redirect('/student')
-    return render_template('studentdash.html')
-
-
-
+    
+    existing_user = user.find_one({'username' : session['username']})
+    if session['logged_in'] and existing_user['type']=='Student':
+        return render_template('studentdash.html')
+    else:
+        flash("You cannot access the Student dashboard!! Login as a Student","danger")
+        return redirect("/home")
+    
 @app.route('/viewmarks',methods=['GET','POST'])
 def view_marks():
     if request.method == 'POST':
@@ -265,9 +269,16 @@ def view_marks():
                 stu_grades.append([rollno,name,subject,marks,grade,finalgrade])
         flash("Here is your Marks :)","success")
         return render_template('studentdash.html',arr=stu_grades)
-    return redirect('/student')
-
-
+    existing_user = user.find_one({'username' : session['username']})
+    if session['logged_in'] and existing_user['type']=='Student':
+        return redirect('/student')
+    elif not session['logged_in']:
+        flash("You need to be Logged in","danger")
+        return redirect("/home")
+    elif not existing_user['type']=='Student':
+        flash("You Cannot View the marks!! Login as a Student","danger")
+        return redirect("/home")
+    
 #Faculty Dashboard
 @app.route('/faculty',methods=['GET','POST'])
 def faculty_dash():
@@ -275,8 +286,16 @@ def faculty_dash():
         print(request.form['comment'])
         user.update_one( {"username":session['username']}, {"$pull": {"comments":request.form['comment']}})
         return redirect('/faculty')
-    comments = (user.find_one({'username' : session['username']}))['comments']
-    return render_template('facultydash.html',comments=comments)
+    existing_user = user.find_one({'username' : session['username']})
+    if session['logged_in'] and existing_user['type']=='Faculty':
+        comments = existing_user['comments']
+        return render_template('facultydash.html',comments=comments)
+    elif not session['logged_in']:
+        flash("You are not Logged in","danger")
+        return redirect("/home")
+    else:
+        flash("You cannot access the faculty dashboard!! Login as a Faculty","danger")
+        return redirect("/home")
 
 def calc_grades(sub):
     l=[]
@@ -316,48 +335,54 @@ def grace(req,grades):
     filename = request.form['u_batch']+request.form['u_dept']+request.form['u_section']+"grace.csv"
     path = "upload/"+filename
     download_path = "./marksheet_folder/"+filename
+    print(storage.child(path))
     storage.child(path).download(download_path)
-    grace = pd.read_csv(download_path)
-    y1=grace["amma"]
-    y2=grace["sports"]
-    y3=grace["nss"]
-    glist=[]
-    for i in range(10):
-        temp=math.ceil((int(y1[i]) + int(y2[i]) + int(y3[i])))
-        glist.append(temp)
-    print(glist)
-    new_grades = grades[:]
-    for i in range(0,10):
-        k=i
-        while glist[i]>0 and k<=29:
-            if grades[k] == "F":
-                new_grades[k]="P"
-                glist[i]-=10
-            elif (grades[k] =='P'):
-                new_grades[k]="C"
-                glist[i]-=10
-            elif (grades[k]=='C') :
-                new_grades[k]="B"
-                glist[i]-=10
-            elif (grades[k] =='B') :
-                new_grades[k]="B+"
-                glist[i]-=10
-            elif (grades[k] =='B+') :
-                new_grades[k]="A"
-                glist[i]-=10
-            elif (grades[k]=='A') :
-                new_grades[k]="A+"
-                glist[i]-=10
-            elif (grades[k]=='A+'):
-                new_grades[k]="O"
-                glist[i]-=10
-            else:
-                new_grades[k]="O"
-                glist[i]-=10
-            k += 10       
-    print("old grades",grades)
-    print("new_grades",new_grades)            
-    return new_grades
+    my_file = Path(download_path)
+    if my_file.is_file():
+        grace = pd.read_csv(download_path)
+        y1=grace["amma"]
+        y2=grace["sports"]
+        y3=grace["nss"]
+        glist=[]
+        for i in range(10):
+            temp=math.ceil((int(y1[i]) + int(y2[i]) + int(y3[i])))
+            glist.append(temp)
+        print(glist)
+        new_grades = grades[:]
+        for i in range(0,10):
+            k=i
+            while glist[i]>0 and k<=29:
+                if grades[k] == "F":
+                    new_grades[k]="P"
+                    glist[i]-=10
+                elif (grades[k] =='P'):
+                    new_grades[k]="C"
+                    glist[i]-=10
+                elif (grades[k]=='C') :
+                    new_grades[k]="B"
+                    glist[i]-=10
+                elif (grades[k] =='B') :
+                    new_grades[k]="B+"
+                    glist[i]-=10
+                elif (grades[k] =='B+') :
+                    new_grades[k]="A"
+                    glist[i]-=10
+                elif (grades[k]=='A') :
+                    new_grades[k]="A+"
+                    glist[i]-=10
+                elif (grades[k]=='A+'):
+                    new_grades[k]="O"
+                    glist[i]-=10
+                else:
+                    new_grades[k]="O"
+                    glist[i]-=10
+                k += 10       
+        print("old grades",grades)
+        print("new_grades",new_grades)            
+        return new_grades
+    else:
+        flash("Grace Mark Uploaded Successfully","success")
+        return redirect('/faculty')
     
 #Upload Excel File    
 @app.route('/upload', methods = ['GET', 'POST'])
@@ -398,9 +423,17 @@ def upload_file():
             storage.child(path).put(upload_path)
             flash("Grace Mark Uploaded Successfully","success")
             return redirect('/faculty')
-    return render_template('facultydash.html')
-    
-#Download Excel File 
+    existing_user = user.find_one({'username' : session['username']})
+    if session['logged_in'] and existing_user['type']=='Faculty':
+        return render_template('facultydash.html')
+    elif not session['logged_in']:
+        flash("You need to be Logged in","danger")
+        return redirect("/home")
+    elif not existing_user['type']=='Student':
+        flash("You Cannot Upload the marks!! Login as a Faculty","danger")
+        return redirect("/home")
+
+#Download Excel File
 @app.route('/download',methods = ['GET', 'POST'])
 def download_file():
     if request.method =='POST':
@@ -411,7 +444,15 @@ def download_file():
         flash("Marksheet Downloaded Successfully","success")
         return send_file(download_path, as_attachment=True)
         # return redirect('/fasculty')
-    return render_template('facultydash.html')
+    existing_user = user.find_one({'username' : session['username']})
+    if session['logged_in'] and existing_user['type']=='Faculty':
+        return render_template('facultydash.html')
+    elif not session['logged_in']:
+        flash("You need to be Logged in","danger")
+        return redirect("/home")
+    elif not existing_user['type']=='Student':
+        flash("You Cannot Upload the marks!! Login as a Faculty","danger")
+        return redirect("/home")
         
 @app.route('/logout',methods=['GET'])
 def logout():
@@ -420,13 +461,10 @@ def logout():
     flash('You are logged out','danger')
     return redirect('/home')
 
-@app.route('/grades',methods=['GET','POST'])
-def grades():
-    if request.method == 'POST':
-        return redirect('/grades')
-    return render_template('grades_calc.html')
 
 if __name__ == '__main__':
     app.secret_key = 'youcantseeme'
-    # port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=80)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
+#     app.run(host='0.0.0.0', port=int(sys.argv[1]))
+    
