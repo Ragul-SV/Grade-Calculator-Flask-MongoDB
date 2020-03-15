@@ -11,7 +11,7 @@ binary = r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe'
 options.binary = binary
 options.set_headless(headless=True)
 
-driver = webdriver.Firefox(firefox_options=options,capabilities=cap,executable_path="C:/Users/Ragul/Desktop/geckodriver.exe")
+driver = webdriver.Firefox(firefox_options=options,capabilities=cap,executable_path="C:\Users\Ragul\Desktop\geckodriver.exe")
 driver.implicitly_wait(10)
 driver.maximize_window()
 driver.get("http://graco-project.herokuapp.com/")
